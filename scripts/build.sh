@@ -5,6 +5,7 @@
 #  - Ciao: https://ciao-lang.org/
 #  - Clingo: https://potassco.org/clingo/
 #  - Eclipse Prolog: https://eclipseclp.org/download.html
+#  - GNU Prolog: http://gprolog.org/
 #  - IDP: https://dtai.cs.kuleuven.be/software/idp/try
 #  - MiniZinc: https://www.minizinc.org/
 #  - Picat: http://picat-lang.org/
@@ -146,6 +147,21 @@ install_ciao() {
 }
 
 # ---------------------------------------------------------------------------
+# GNU Prolog
+
+install_gprolog() {
+    mkdir -p /opt/gprolog/code
+    cd /opt
+    git clone https://git.code.sf.net/p/gprolog/code gprolog-code
+    cd /opt/gprolog-code/src
+    autoreconf
+    ./configure --with-install-dir=/opt/gprolog
+    make
+    make install
+    gen_runscript gprolog gprolog /opt/gprolog/bin
+}
+
+# ---------------------------------------------------------------------------
 # SWI: http://www.swi-prolog.org/
 
 install_swipl() {
@@ -155,7 +171,7 @@ install_swipl() {
 
 # ===========================================================================
 
-systems="clingo eclipseclp idp minizinc picat xsb ciao swipl"
+systems="clingo eclipseclp idp minizinc picat xsb ciao swipl gprolog"
 
 for i in $systems; do
     install_$i

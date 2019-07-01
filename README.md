@@ -24,6 +24,7 @@ Execute with `run.sh SYSNAME`, where SYSNAME is one of:
  - picat
  - xsb
  - ciao
+ - gprolog
  - swipl
 
 # Examples
