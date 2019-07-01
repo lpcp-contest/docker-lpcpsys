@@ -8,6 +8,11 @@ Build this image with:
 docker build -t lpcpsys:latest .
 ```
 
+Alternatively it can be pulled from [DockerHub](https://hub.docker.com/r/lpcpcontest/lpcpsys) using:
+```
+docker pull lpcpcontest/lpcpsys
+```
+
 (For debugging) open a bash terminal with:
 ```
 docker run --rm -ti lpcpsys:latest 
