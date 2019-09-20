@@ -11,6 +11,7 @@ docker build -t lpcpsys:latest .
 Alternatively it can be pulled from [DockerHub](https://hub.docker.com/r/lpcpcontest/lpcpsys) using:
 ```
 docker pull lpcpcontest/lpcpsys
+docker tag lpcpcontest/lpcpsys:latest lpcpsys:latest
 ```
 
 (For debugging) open a bash terminal with:
