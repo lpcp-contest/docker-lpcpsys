@@ -52,25 +52,34 @@ EOF
 # Clingo: https://potassco.org/clingo/
 
 install_clingo() {
-    # TODO: from bin? "conda install -c potassco clingo"
+    ## TODO: binary with python support "conda install -c potassco clingo"
 
-    CLINGO_VER=master
+    ## Source installation (it does not have python nor lua support)
+#    CLINGO_VER=master
+#
+#    apt-get -y install build-essential git cmake bison gcc re2c
+#
+#    mkdir -p /opt/clingo
+#    cd /opt/clingo \
+#      && git init \
+#      && git remote add origin https://github.com/potassco/clingo.git \
+#      && git fetch origin ${CLINGO_VER} \
+#      && git pull origin ${CLINGO_VER} \
+#      && git submodule update --init --recursive
+#
+#    cd /opt/clingo
+#    cmake -H/opt/clingo -B/opt/clingo -DCMAKE_BUILD_TYPE=release \
+#      && cmake --build /opt/clingo
+#
+#    gen_runscript clingo clingo /opt/clingo/bin
 
-    apt-get -y install build-essential git cmake bison gcc re2c
-
+    # Install binary release (contains Lua support)
     mkdir -p /opt/clingo
-    cd /opt/clingo \
-      && git init \
-      && git remote add origin https://github.com/potassco/clingo.git \
-      && git fetch origin ${CLINGO_VER} \
-      && git pull origin ${CLINGO_VER} \
-      && git submodule update --init --recursive
-
     cd /opt/clingo
-    cmake -H/opt/clingo -B/opt/clingo -DCMAKE_BUILD_TYPE=release \
-      && cmake --build /opt/clingo
-
-    gen_runscript clingo clingo /opt/clingo/bin
+    curl -O -L https://github.com/potassco/clingo/releases/download/v5.4.0/clingo-5.4.0-linux-x86_64.tar.gz
+    tar -xzf clingo-5.4.0-linux-x86_64.tar.gz
+    rm clingo-5.4.0-linux-x86_64.tar.gz
+    gen_runscript clingo clingo /opt/clingo/clingo-5.4.0-linux-x86_64
 }
 
 # ---------------------------------------------------------------------------
@@ -82,7 +91,9 @@ install_eclipseclp() {
     curl -O https://eclipseclp.org/Distribution/Builds/7.0_45/x86_64_linux/eclipse_basic.tgz
     curl -O https://eclipseclp.org/Distribution/Builds/7.0_45/x86_64_linux/eclipse_rt.tgz
     tar -xzf eclipse_basic.tgz
+    rm eclipse_basic.tgz
     tar -xzf eclipse_rt.tgz
+    rm eclipse_rt.tgz
     ./RUNME
     gen_runscript eclipseclp eclipse /opt/eclipseclp/bin/x86_64_linux
 }
@@ -95,6 +106,7 @@ install_idp() {
     cd /opt/idp
     curl -O https://dtai.cs.kuleuven.be/krr/files/releases/idp/idp-linux-latest.tar.gz
     tar -xzf idp-linux-latest.tar.gz
+    rm idp-linux-latest.tar.gz
     gen_runscript idp idp /opt/idp/idp3-3.7.1-Linux/usr/local/bin
 }
 
@@ -106,6 +118,7 @@ install_minizinc() {
     cd /opt/minizinc
     curl -L -O https://github.com/MiniZinc/MiniZincIDE/releases/download/2.2.3/MiniZincIDE-2.2.3-bundle-linux-x86_64.tgz
     tar -xzf MiniZincIDE-2.2.3-bundle-linux-x86_64.tgz
+    rm MiniZincIDE-2.2.3-bundle-linux-x86_64.tgz
     gen_runscript minizinc minizinc /opt/minizinc/MiniZincIDE-2.2.3-bundle-linux/bin
 }
 
@@ -117,6 +130,7 @@ install_picat() {
     cd /opt/picat
     curl -O http://picat-lang.org/download/picat26_linux64.tar.gz
     tar -xzf picat26_linux64.tar.gz
+    rm picat26_linux64.tar.gz
     gen_runscript picat picat /opt/picat/Picat
 }
 
@@ -128,6 +142,7 @@ install_xsb() {
     cd /opt/xsb
     curl -L https://sourceforge.net/projects/xsb/files/xsb/3.8%20Three-Buck%20Chuck/XSB38.tar.gz/download > XSB38.tar.gz
     tar -xzf XSB38.tar.gz
+    rm XSB38.tar.gz
     cd XSB/build
     ./configure
     ./makexsb
