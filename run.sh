@@ -37,7 +37,7 @@ cat > runaux.sh <<EOF
 mkdir -p /data
 cp /data0/* /data
 cd /data    
-$runtimeout /opt/run-$sys.sh \$@
+$runtimeout /opt/run-$sys.sh "\$@"
 EOF
 chmod a+x runaux.sh
 docker run --rm $opts -v "$(pwd)":/data0 lpcpsys:latest /data0/runaux.sh "$@"
