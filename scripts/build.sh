@@ -128,9 +128,12 @@ install_minizinc() {
 install_picat() {
     mkdir -p /opt/picat
     cd /opt/picat
-    curl -O http://picat-lang.org/download/picat26_linux64.tar.gz
-    tar -xzf picat26_linux64.tar.gz
-    rm picat26_linux64.tar.gz
+#    curl -O http://picat-lang.org/download/picat26_linux64.tar.gz
+#    tar -xzf picat26_linux64.tar.gz
+#    rm picat26_linux64.tar.gz
+    curl -O http://picat-lang.org/download/picat27b12_linux64.tar.gz
+    tar -xzf picat27b12_linux64.tar.gz
+    rm picat27b12_linux64.tar.gz
     gen_runscript picat picat /opt/picat/Picat
 }
 
